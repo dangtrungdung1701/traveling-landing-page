@@ -2,8 +2,8 @@ const header = document.querySelector(".header");
 const hero = document.querySelector(".hero");
 const bookingTour = document.querySelector(".booking-tour");
 const slide = document.querySelector(".slide");
+const scrollTop = document.querySelector(".scroll-top");
 
-var loading = false;
 window.addEventListener("scroll", () => {
   let scroll = window.scrollY;
 
@@ -12,6 +12,19 @@ window.addEventListener("scroll", () => {
   } else {
     header.classList.remove("overlay");
   }
+});
+
+window.addEventListener("scroll", () => {
+  let scroll = window.scrollY;
+
+  if (scroll > hero.offsetHeight) {
+    scrollTop.classList.add("show");
+  } else {
+    scrollTop.classList.remove("show");
+  }
+});
+scrollTop.addEventListener("click", () => {
+  window.scrollTo(0, 0);
 });
 const show = (data) => {
   data.forEach((item, index) => {
