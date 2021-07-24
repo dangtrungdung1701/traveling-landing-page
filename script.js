@@ -3,15 +3,28 @@ const hero = document.querySelector(".hero");
 const bookingTour = document.querySelector(".booking-tour");
 const slide = document.querySelector(".slide");
 const scrollTop = document.querySelector(".scroll-top");
-
+let lastScrollTop = 0;
 window.addEventListener("scroll", () => {
-  let scroll = window.scrollY;
+  let st = window.scrollY;
 
-  if (scroll + header.offsetHeight > hero.offsetHeight) {
-    header.classList.add("overlay");
-  } else {
+  // if (scroll > 30) {
+  //   header.classList.add("overlay");
+  // } else {
+  //   header.classList.remove("overlay");
+  // }
+  if (st == 0) {
     header.classList.remove("overlay");
+    header.classList.remove("overlay-down");
+  } else {
+    header.classList.add("overlay");
+    if (st > lastScrollTop) {
+      header.classList.add("overlay-down");
+    } else {
+      header.classList.remove("overlay-down");
+    }
   }
+
+  lastScrollTop = st <= 0 ? 0 : st;
 });
 
 window.addEventListener("scroll", () => {
